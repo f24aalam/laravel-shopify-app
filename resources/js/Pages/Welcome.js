@@ -1,15 +1,30 @@
 import React from 'react';
-import { Link, Head } from '@inertiajs/inertia-react';
+import Shopified from "../Layouts/Shopified";
+import {Page, Card, Button} from '@shopify/polaris';
+import { Inertia } from '@inertiajs/inertia';
 
-export default function Welcome(props) {
+const Welcome = ({ user }) => {
+
+    function handleSubmit(e) {
+        e.preventDefault()
+        Inertia.post('/')
+    }
+
     return (
         <>
-            <Head title="Welcome" />
-            <div className="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
-                <div className="max-w-6xl mx-auto sm:px-6 lg:px-8">
-                    Welcome to shopify
-                </div>
-            </div>
+            <Page title="Inertia App">
+                <Card title={ user.name } sectioned>
+                    <Button
+                        primary
+                        onClick={handleSubmit}
+                    >
+                        Click Me
+                    </Button>
+                </Card>
+            </Page>
         </>
     );
 }
+
+Welcome.layout = page => <Shopified children={page} title="Welcome" />
+export default Welcome;

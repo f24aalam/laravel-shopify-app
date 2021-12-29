@@ -27,6 +27,6 @@
         "tailwindcss": "^2.1.2"
     },
     "dependencies": {
-        "@shopify/polaris": "^7.2.0"
+        "@shopify/polaris": "^7.4.0"
     }
 }

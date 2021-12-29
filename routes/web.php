@@ -1,6 +1,10 @@
 <?php
 
+use App\Http\Controllers\IndexController;
 use Illuminate\Foundation\Application;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -16,16 +20,10 @@ use Inertia\Inertia;
 */
 
 
-// Route::get('/', function () {
-//     return view('welcome');
-// })->middleware(['verify.shopify'])->name('home');
+Route::middleware(['verify.shopify'])->group(function () {
+    Route::get('/', [IndexController::class, 'index'])->name('home');
+    Route::post('/', function() {
+        dd("its working");
+    });
+});
 
-Route::get('/', function () {
-    return Inertia::render('Welcome');
-})->middleware(['verify.shopify'])->name('home');
-
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-require __DIR__.'/auth.php';
